@@ -2,6 +2,7 @@ package ca.vickypatel.activityswipe;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -153,7 +155,20 @@ public class MainActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            Button actionButton = (Button) rootView.findViewById(R.id.action_bar_title);
+            actionButton.setText("Section " + getArguments().getInt(ARG_SECTION_NUMBER));
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+
+            switch (getArguments().getInt(ARG_SECTION_NUMBER)){
+                case 1:
+                    break;
+                case 2:
+                    actionButton.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.colorAccent));
+                    break;
+                case 3:
+                    break;
+            }
+
             return rootView;
         }
     }
